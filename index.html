@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<!-- worst comment format in any programming language -->
+
+<html lang="en">
+    <head>
+        <!-- Meta elements -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Display -->
+        <title>Moss v0.1 Reference Manual</title>
+        
+        <!-- Styles -->
+        <link rel="stylesheet" href="styles.css">
+
+        <!-- Scripts -->
+        <script src="scripts/code-highlighter.js" defer></script>
+        <script src="scripts/copy.js" defer></script>
+    </head>
+
+    <body>
+        <header>
+        </header>
+
+        <div class="layout">
+            <nav class="index">
+                <h2>Contents</h2>
+
+                <ul>
+                    <li><a href="#introduction">1 - Introduction</a></li>
+                    <li>
+                        <a href="#basic-concepts">2 - Basic Concepts</a>
+                        <ul>
+                            <li>
+                                <a href="#types">2.1 - Types</a>
+                                <ul>
+                                    <li><a href="#strings">2.1.1 - Strings</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="#let-const">2.2 - Variables & Constants</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <main class="surface-container"><article class="surface">
+                <h1>Moss v0.1 Reference Manual</h1>
+            
+                <section>
+                    <h2 id="introduction">1 - Introduction</h2>
+                    <p>Moss is an efficient scripting language intended for beginners and designed to teach the fundamentals of computer programming. It is object-oriented and compiled just-in-time for performance.</p>
+                    <p>The reference implementation is IronMoss, which is open-source and programmed in Rust. Its source is available in the
+                    <a href="https://github.com/SpooderK1ng/IronMoss" target="_blank" rel="noopener noreferrer">Moss Github Repository</a> held under the <span class="accent">MIT License</span>.</p> <!-- update after the repo is created -->
+                </section>
+
+                <hr>
+
+                <section>
+                    <h2 id="basic-concepts">2 - Basic Concepts</h2>
+            
+                    <h3 id="types">2.1 - Types</h3>
+                    <p>Moss has the following primitive types:</p>
+                    <ul>
+                        <li><code>str</code> <span class="light">(strings)</span></li>
+                        <li><code>bool</code> <span class="light">(booleans)</span></li>
+                        <li><code>int32</code> <span class="light">(32-bit signed integers)</span></li>
+                        <li><code>int64</code> <span class="light">(64-bit signed integers)</span></li>
+                        <li><code>fl32</code> <span class="light">(IEEE754 single-precision floating points)</span></li>
+                        <li><code>fl64</code> <span class="light">(IEEE754 double-precision floating points)</span></li>
+                        <li><code>u32</code> <span class="light">(32-bit unsigned integers)</span></li>
+                    </ul>
+                    <p>Most primitive types in Moss produce first-class values. These values can be stored in bindings, passed as arguments, and returned as results. The <code>u32</code> type is an exception; its values are third-class and cannot be stored, passed, or returned. All types are nullable.</p>
+            
+                    <h4 id="strings">2.1.1 - Strings (<code>str</code>)</h4>
+                    <p>Strings are immutable sequences of up to <span class="accent">4,294,967,296 (2<sup>32</sup>)</span> UTF-8 characters. Each character is given an index under the <code>u32</code> type, starting at <code>0</code> and incrementing by <code>1</code>. Strings can be defined with either single quotes or double quotes (<code class="string">'string'</code> or <code class="string">"string"</code>). Double quotes are standard.</p>
+
+                    <!-- who decided indentation should work like this -->
+                    <div class="code-block">
+                        <button class="copy-button">Copy</button>
+<pre><code>// String example
+let x = "Hello World!"
+// Index: 0 = H, 1 = e, 2 = l...
+
+// Get a specific index as a string
+let y = x.index(1)
+// y == "e"</code></pre>
+                    </div>
+
+                    <p>(note to continue here)</p>
+
+                    <h3 id="let-const">2.2 - Variables & Constants</h3>
+                    <p>Moss has two kinds of bindings: <span class="accent">variables</span> and <span class="accent">constants</span>.</p>
+                    <p>Bindings need to be declared and given an initial value in order to be used throughout a scope. Declaration uses the keywords <code>let</code> for variables and <code>const</code> for constants. <code>null</code> is not a valid literal to declare with.</p>
+                
+                    <div class="code-block">
+                        <button class="copy-button">Copy</button>
+<pre><code>// Declaration
+let variable = 5
+const CONSTANT = 10</code></pre>
+                    </div>
+
+                    <p>Moss uses static typing. Once a binding is declared, its type is fixed and cannot be changed. Any literal assigned to a binding must be compatible with the binding's declared type.</p>
+                </section>
+            </article></main>
+        </div>
+
+        <footer>
+        </footer>
+    </body>
+</html>

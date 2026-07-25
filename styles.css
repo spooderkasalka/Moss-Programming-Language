@@ -1,0 +1,366 @@
+/* =========================================================
+   1. Root Variables
+   ========================================================= */
+
+:root {
+    /* Layout */
+    --header-height: 80px;
+    --index-width: min(400px, 15%);
+
+    /* Typography */
+    --code-font: "Cascadia Code", "Consolas", monospace;
+
+    /* Theme Colors */
+    --background-col: #111;
+    --header-col: #333;
+    --surface-col: #1b1b1b;
+    --code-col-base: 10, 10, 10;
+    --code-col: rgb(var(--code-col-base));
+
+    --moss-primary-base: 84, 187, 119;
+    --moss-primary: rgb(var(--moss-primary-base));
+    --moss-accent-base: 76, 173, 143;
+    --moss-accent: rgb(var(--moss-accent-base));
+
+    --light-base: 221, 221, 221;
+    --light: rgb(var(--light-base));
+    --light-shade: rgba(var(--light-base), 0.5);
+
+    /* Shadows */
+    --body-shadow: 0 0 10px #000a;
+    --big-shadow: 0 0 20px #0008;
+}
+
+/* =========================================================
+   2. Global
+   ========================================================= */
+
+* {
+    /* I LOVE BORDER-BOX!!!! */
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* Alignment */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+
+    /* Appearance */
+    background: var(--background-col);
+    
+    /* Typography */
+    color: var(--light);
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+[id] {
+    scroll-margin-top: calc(var(--header-height) + 20px);
+}
+
+/* =========================================================
+   3. Layout Structure
+   ========================================================= */
+
+header {
+    /* Positioning */
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1000;
+
+    /* Sizing */
+    width: 100%;
+    height: var(--header-height);
+
+    /* Appearance */
+    background: var(--header-col);
+    box-shadow: var(--big-shadow);
+}
+
+.layout {
+    display: flex;
+    padding-top: var(--header-height);
+    width: 100%;
+}
+
+.index {
+    position: fixed;
+    top: var(--header-height);
+    width: var(--index-width);
+    bottom: 0;
+
+    background: var(--surface-col);
+    box-shadow: var(--body-shadow);
+
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.index h2 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.index ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.index li {
+    margin: 4px 0;
+}
+
+.index ul ul {
+    padding-left: 20px;
+}
+
+.index a {
+    display: block;
+
+    padding: 5px 8px;
+    border-radius: 4px;
+
+    color: rgba(var(--moss-accent-base), 0.5);
+    text-decoration: none;
+    font-weight: 700;
+
+    transition:
+        background 0.2s,
+        color 0.2s;
+}
+
+.index a:hover {
+    background: rgba(var(--light-base), 0.08);
+    color: var(--moss-accent);
+}
+
+.index a.active {
+    background: rgba(var(--moss-primary-base), 0.15);
+    color: var(--moss-primary);
+
+    border-left: 3px solid var(--moss-primary);
+}
+
+.surface-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    width: calc(100% - var(--index-width));
+    margin-left: var(--index-width);
+}
+
+.surface {
+    /* Sizing */
+    max-width: 1250px;
+    width: 100%;
+    
+    /* Appearance */
+    background: var(--surface-col);
+    padding: 10px;
+    box-shadow: var(--big-shadow);
+
+    /* Typography */
+    line-height: 1.5em;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: var(--moss-accent);
+    margin: 50px 0;
+}
+
+/* =========================================================
+   4. Typography
+   ========================================================= */
+
+/* Headings */
+h1 {
+    /* Typography */
+    text-align: center;
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.25em;
+
+    /* Color */
+    color: var(--moss-primary);
+    text-shadow: var(--body-shadow);
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+h2, h3, h4 {
+    /* Layout */
+    margin-top: 30px;
+
+    /* Typography */
+    color: var(--moss-primary);
+    text-shadow: var(--body-shadow);
+}
+
+/* Body styles */
+.surface p {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.surface ul {
+    font-size: 18px;
+    margin-bottom: 12px;
+    padding-left: 40px;
+}
+
+.accent {
+    color: var(--moss-accent);
+    font-weight: 700;
+}
+
+.light {
+    color: var(--light-shade);
+    font-style: italic;
+}
+
+/* Links */
+:not(li) > a:link {
+    color: var(--moss-primary);
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+:not(li) > a:visited {
+    color: var(--moss-accent);
+    font-style: italic;
+}
+
+/* =========================================================
+   5. Code Blocks
+   ========================================================= */
+
+.code-block {
+    position: relative;
+    width: 90%;
+    margin-inline: auto;
+}
+
+.copy-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--light-shade);
+    border-radius: 6px;
+    background: rgba(var(--code-col-base), 0.5);
+    color: var(--light-shade);
+    transition:
+        border 0.25s,
+        color 0.25s;
+
+    cursor: pointer;
+}
+
+.copy-button:hover {
+    border: 1px solid rgba(var(--light-base), 0.75);
+    color: rgba(var(--light-base), 0.75);
+}
+
+.code-block pre {
+    /* Layout */
+    width: 100%;
+    margin: 0;
+    padding: 1rem 5rem 1rem 1rem;
+
+    /* Appearance */
+    background: var(--code-col);
+    border-radius: 8px;
+    box-shadow: var(--body-shadow);
+    border: 2px solid #0004;
+    
+    /* Behaviour */
+    /* i love being so inconsistent in weaver i use uk or us spelling */
+    overflow-x: auto;
+
+    /* Typography */
+    font-family: var(--code-font);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Full code block */
+pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* Inline code "pill" block */
+:not(pre) > code {
+    background: var(--code-col);
+    font-family: var(--code-font);
+
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    box-shadow: var(--body-shadow);
+}
+
+/* =========================================================
+   6. Syntax Highlighting
+   ========================================================= */
+
+/* Generic */
+.keyword    { color: #c586c0; }
+.operator   { color: #d4d4d4; }
+.function   { color: #dcdcaa; }
+.restricted { color: #708090; font-style: italic; }
+.comment    { color: #6a9955; font-style: italic; }
+
+/* Types & Literals */
+.type       { color: #1aebc1; }
+.number     { color: #b5cea8; }
+.string     { color: #ce9178; }
+.boolean    { color: #569cd6; }
+.null       { color: #569cd6; }
+
+/* =========================================================
+   7. Scrollbars
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(var(--light-base), 0.05);
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--light-base), 0.1)
+}
